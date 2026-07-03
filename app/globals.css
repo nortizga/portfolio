@@ -21,7 +21,6 @@ body {
   background-color: #272727;
   color: #ffd4d4;
   font-family: var(--font-body);
-  overflow-x: hidden;
 }
 
 ::selection {

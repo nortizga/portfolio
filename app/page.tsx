@@ -44,14 +44,7 @@ const EXPERIENCE = [
 ];
 
 export default function Home() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <main
@@ -59,9 +52,7 @@ export default function Home() {
       style={{ fontFamily: 'DM Sans, sans-serif' }}
     >
       {/* NAV */}
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#272727]/90 backdrop-blur-md border-b border-[#FFD4D4]/10' : ''}`}
-      >
+      <nav>
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
           <span
             className="font-bold text-xl text-[#FF9FE5]"
@@ -125,10 +116,8 @@ export default function Home() {
       </nav>
 
       {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-center px-6 pt-24 max-w-6xl mx-auto">
-        <div className="relative">
-          <div className="absolute -top-20 -right-40 w-[500px] h-[500px] rounded-full bg-[#2B50AA]/10 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-[#FF9FE5]/5 blur-3xl pointer-events-none" />
+      <section className="min-h-[100dvh] flex flex-col justify-center px-6 pt-24 max-w-6xl mx-auto">
+        <div>
           <h1
             className="text-[clamp(52px,8vw,100px)] font-extrabold leading-[1.05] text-[#FFD4D4] mb-6"
             style={{ fontFamily: 'Syne, sans-serif' }}
