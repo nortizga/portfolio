@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const NAV_LINKS = ['Experience','About', 'Contact'];
 
@@ -46,30 +46,11 @@ const EXPERIENCE = [
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-up');
-            entry.target.classList.remove('opacity-0', 'translate-y-8');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll('.reveal').forEach((el) => {
-      observerRef.current?.observe(el);
-    });
-    return () => observerRef.current?.disconnect();
   }, []);
 
   return (
@@ -164,7 +145,7 @@ export default function Home() {
 
       {/* EXPERIENCE */}
       <section id="experience" className="py-20 px-6 max-w-6xl mx-auto">
-        <div className="reveal opacity-0 translate-y-8 transition-all duration-700 mb-16">
+        <div className="mb-16">
           <p
             className="text-xs font-mono text-[#FF858D] tracking-widest uppercase mb-4"
             style={{ fontFamily: 'DM Mono, monospace' }}
@@ -185,7 +166,7 @@ export default function Home() {
             {EXPERIENCE.map((job) => (
               <div
                 key={job.company}
-                className="reveal opacity-0 translate-y-8 transition-all duration-700 md:pl-16 relative"
+                className="md:pl-16 relative"
               >
                 <div
                   className="absolute left-0 top-6 w-10 h-10 rounded-full border-2 items-center justify-center hidden md:flex flex-shrink-0"
@@ -244,7 +225,7 @@ export default function Home() {
 
       {/* ABOUT */}
       <section id="about" className="py-20 px-6 max-w-6xl mx-auto">
-        <div className="reveal opacity-0 translate-y-8 transition-all duration-700 mb-16">
+        <div className="mb-16">
           <p
             className="text-xs font-mono text-[#FF858D] tracking-widest uppercase mb-4"
             style={{ fontFamily: 'DM Mono, monospace' }}
@@ -259,7 +240,7 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="reveal opacity-0 translate-y-8 transition-all duration-700 grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
           <div className="lg:col-span-3">
             <p className="text-[#FFD4D4]/60 leading-relaxed mb-4 text-lg">
               I'm passionate about building software and continuously learning
@@ -308,7 +289,7 @@ export default function Home() {
 
       {/* CONTACT */}
       <section id="contact" className="py-40 px-6">
-        <div className="max-w-3xl mx-auto text-center reveal opacity-0 translate-y-8 transition-all duration-700">
+        <div className="max-w-3xl mx-auto text-center">
           <p
             className="text-xs font-mono text-[#FF858D] tracking-widest uppercase mb-6"
             style={{ fontFamily: 'DM Mono, monospace' }}
